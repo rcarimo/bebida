@@ -45,7 +45,11 @@ jobs:
           distribution: temurin
           java-version: 17
 
+      # O runner já traz o Android SDK; o pacote "tools" (instalado por defeito
+      # por esta ação) foi retirado pela Google e faz o sdkmanager falhar.
       - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
 
       - name: Instalar dependências
         run: npm ci
