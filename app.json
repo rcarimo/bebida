@@ -29,7 +29,7 @@
       [
         "react-native-google-mobile-ads",
         {
-          "androidAppId": "ca-app-pub-3940256099942544~3347511713",
+          "androidAppId": "ca-app-pub-4197308618421200~9999018099",
           "iosAppId": "ca-app-pub-3940256099942544~1458002511",
           "delayAppMeasurementInit": true,
           "userTrackingUsageDescription": "Usamos este identificador para mostrar anúncios mais relevantes. Os teus dados de bebidas nunca são partilhados."
@@ -37,6 +37,16 @@
       ]
     ],
     "scheme": "bebida",
-    "backgroundColor": "#0E0F12"
+    "backgroundColor": "#0E0F12",
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "127ba013-8c97-4c5c-8793-18af2fe3fcaf"
+      }
+    }
   }
 }
