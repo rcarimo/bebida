@@ -25,16 +25,7 @@
     },
     "plugins": [
       "expo-router",
-      "expo-sqlite",
-      [
-        "react-native-google-mobile-ads",
-        {
-          "androidAppId": "ca-app-pub-4197308618421200~9999018099",
-          "iosAppId": "ca-app-pub-3940256099942544~1458002511",
-          "delayAppMeasurementInit": true,
-          "userTrackingUsageDescription": "Usamos este identificador para mostrar anúncios mais relevantes. Os teus dados de bebidas nunca são partilhados."
-        }
-      ]
+      "expo-sqlite"
     ],
     "scheme": "bebida",
     "backgroundColor": "#0E0F12",

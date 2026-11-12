@@ -62,25 +62,6 @@ Todas as tabelas têm `updated_at`, `deleted` (apagado lógico) e `dirty` (por e
 - O ecrã não se apaga enquanto a noite está aberta.
 - Uma noite esquecida aberta fecha sozinha depois de 12 horas sem registos.
 
-## Anúncios (AdMob)
-
-Os anúncios só aparecem em dois sítios, longe dos botões usados durante a noite:
-- **Início**, um banner no fundo, só quando **não** há noite aberta;
-- **Histórico**, um bloco entre "Por bar" e "Por bebida", sempre com a etiqueta "Anúncio".
-
-Nunca aparecem nos preços, na noite ativa nem ao fechar a conta. O código está em `src/lib/ads.tsx`.
-
-- **No Expo Go não há anúncios** (a biblioteca é nativa). Para os ver, gera um APK com `eas build`.
-- Até configurares o AdMob, aparecem os **anúncios de teste** da Google ("Test Ad").
-- **Premium** desliga todos os anúncios. Por agora há um interruptor de teste no ecrã Conta, visível só em desenvolvimento; quando houver compra na loja, ela chama `setPremium(true)`.
-
-Para ganhar dinheiro a sério:
-1. Cria conta em <https://admob.google.com>, adiciona a app (Android e iOS) e cria **dois blocos de anúncio Banner** (início e histórico).
-2. Em `app.json`, no plugin `react-native-google-mobile-ads`, troca `androidAppId` e `iosAppId` pelos IDs da **app** (`ca-app-pub-...~...`).
-3. No `.env` (e nas variáveis do EAS), preenche `EXPO_PUBLIC_ADMOB_BANNER_HOME` e `EXPO_PUBLIC_ADMOB_BANNER_HISTORY` com os IDs dos **blocos** (`ca-app-pub-.../...`).
-4. Na consola AdMob › Controlos de bloqueio, bloqueia categorias sensíveis (jogos de azar, empréstimos rápidos, encontros).
-5. Nunca toques nos teus próprios anúncios reais; para testar no teu telefone usa os IDs de teste.
-
 ## Publicar nas lojas
 
 Usa o EAS (não precisas de Xcode nem Android Studio):
