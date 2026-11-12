@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Alert, Pressable, View } from 'react-native';
+import { Alert, Pressable, Switch, View } from 'react-native';
 import { router } from 'expo-router';
 import {
   createUserWithEmailAndPassword,
@@ -10,6 +10,7 @@ import { Button, Card, Field, Header, Label, Screen, T } from '../components/ui'
 import { Icon } from '../components/Icon';
 import { getFirebaseAuth, isFirebaseConfigured } from '../lib/firebase';
 import { getSyncStatus, logout, onSyncStatus, syncNow, type SyncStatus } from '../lib/sync';
+import { setPremium, usePremium } from '../lib/ads';
 import { shortDate, time } from '../lib/format';
 import { colors } from '../theme';
 
@@ -42,6 +43,7 @@ export default function Perfil() {
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const premium = usePremium();
 
   useEffect(() => onSyncStatus(setStatus), []);
 
@@ -189,6 +191,25 @@ export default function Perfil() {
           ) : null}
         </>
       )}
+      {/* Interruptor Premium: por agora só nas versões de desenvolvimento.
+          Quando houver compra na loja, é ela que chama setPremium(true). */}
+      {__DEV__ ? (
+        <Card style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 8 }}>
+          <View style={{ flex: 1, gap: 2 }}>
+            <T style={{ fontSize: 17, fontWeight: '700' }}>Premium (teste)</T>
+            <T style={{ color: colors.muted, fontSize: 14 }}>
+              {premium ? 'Sem anúncios.' : 'Os anúncios aparecem no início e no histórico.'}
+            </T>
+          </View>
+          <Switch
+            accessibilityLabel="Premium, sem anúncios"
+            value={premium}
+            onValueChange={(v) => void setPremium(v)}
+            trackColor={{ true: colors.accent, false: colors.border }}
+            thumbColor={colors.text}
+          />
+        </Card>
+      ) : null}
     </Screen>
   );
 }

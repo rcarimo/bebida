@@ -6,6 +6,7 @@ import { Icon } from '../components/Icon';
 import { getStats } from '../lib/repo';
 import { CURRENCY, getPeriod, money, shortDate, type PeriodKind } from '../lib/format';
 import { useLoad } from '../lib/useLoad';
+import { AdSlot } from '../lib/ads';
 import { colors, radius } from '../theme';
 
 const KINDS: { kind: PeriodKind; label: string }[] = [
@@ -120,6 +121,8 @@ export default function Historico() {
           ))}
         </Card>
       )}
+
+      {stats ? <AdSlot placement="history" /> : null}
 
       {stats && stats.perDrink.length > 0 && (
         <Card style={{ gap: 12 }}>

@@ -4,11 +4,16 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { getDb } from '../lib/db';
 import { startSync } from '../lib/sync';
+import { initAds, loadPremium } from '../lib/ads';
 import { colors } from '../theme';
 
 export default function RootLayout() {
   useEffect(() => {
-    void getDb().then(() => startSync());
+    void getDb().then(async () => {
+      startSync();
+      const premium = await loadPremium();
+      if (!premium) void initAds();
+    });
   }, []);
 
   return (

@@ -6,6 +6,7 @@ import { Icon } from '../components/Icon';
 import { createBar, deleteBar, getActiveNight, getNightDetail, getStats, listBars } from '../lib/repo';
 import { CURRENCY, getPeriod, money, relativeDay } from '../lib/format';
 import { useLoad } from '../lib/useLoad';
+import { AdSlot } from '../lib/ads';
 import { colors, radius } from '../theme';
 
 function greeting() {
@@ -136,6 +137,9 @@ export default function Home() {
           </View>
         </Card>
       </Pressable>
+
+      {/* Anúncio só quando não há noite aberta, longe dos botões principais. */}
+      {!active && data ? <AdSlot placement="home" /> : null}
 
       <Sheet visible={sheet} title="Bar novo" onClose={() => setSheet(false)}>
         <Field
